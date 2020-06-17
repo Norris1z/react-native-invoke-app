@@ -61,7 +61,7 @@ public class MainActivity extends ReactActivity {
 import { wakeMeUp, isAppInHeadlessMode } from 'react-native-invoke-app'
 
 isAppInHeadlessMode() // true/false
-wakeUpApp(payload) // pass anything to get it inside appInvoked listener
+wakeMeUp(payload) // pass anything to get it inside appInvoked listener
 
 
 ```
