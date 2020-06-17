@@ -1,8 +1,14 @@
+import { NativeModules } from 'react-native'
 
-import { NativeModules } from 'react-native';
+const { ReactNativeInvokeApp } = NativeModules
 
-const { ReactNativeInvokeApp } = NativeModules;
+export const isAppInHeadlessMode = () => ReactNativeInvokeApp.isAppInHeadlessMode()
+export const wakeMeUp = payload => {
+    if (isAppInHeadlessMode()) {
+        return ReactNativeInvokeApp.invokeApp({
+            data:  typeof data !== 'object' ? {} : payload
+        })
+    }
 
-export default (data = {}) => {
-    ReactNativeInvokeApp.invokeApp(typeof data !== 'object' ? {} : data);
-};
+    console.warn('Tried to wake up the app which is already instantiated')
+}
