@@ -74,10 +74,6 @@ public class RNInvokeApp extends ReactContextBaseJavaModule {
     }
 
     private boolean isAppOnForeground(ReactApplicationContext context) {
-        /**
-         * We need to check if app is in foreground otherwise the app will crash.
-         * http://stackoverflow.com/questions/8489993/check-android-application-is-in-foreground-or-not
-         **/
         ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
         List<ActivityManager.RunningAppProcessInfo> appProcesses = activityManager.getRunningAppProcesses();
         if (appProcesses == null) {
@@ -91,13 +87,5 @@ public class RNInvokeApp extends ReactContextBaseJavaModule {
             }
         }
         return false;
-    }
-
-    @ReactMethod
-    public boolean isAppInHeadlessMode(ReactApplicationContext context) {
-        ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
-        List<ActivityManager.RunningAppProcessInfo> appProcesses = activityManager.getRunningAppProcesses();
-
-        return appProcesses == null;
     }
 }

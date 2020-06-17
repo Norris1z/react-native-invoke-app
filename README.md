@@ -7,7 +7,6 @@ My improvements:
 - supports Typescript typings
 - supports FLAG_ACTIVITY_SINGLE_TOP
 - updated dependencies
-- additional method isAppInHeadlessMode
 
 ## Installation
 
@@ -58,11 +57,9 @@ public class MainActivity extends ReactActivity {
 ## Usage
 
 ```
-import { wakeMeUp, isAppInHeadlessMode } from 'react-native-invoke-app'
+import { wakeMeUp } from 'react-native-invoke-app'
 
-isAppInHeadlessMode() // true/false
 wakeMeUp(payload) // pass anything to get it inside appInvoked listener
-
 
 ```
 
