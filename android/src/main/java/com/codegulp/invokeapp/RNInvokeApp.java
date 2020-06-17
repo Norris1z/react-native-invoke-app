@@ -92,4 +92,12 @@ public class RNInvokeApp extends ReactContextBaseJavaModule {
         }
         return false;
     }
+
+    @ReactMethod
+    public boolean isAppInHeadlessMode(ReactApplicationContext context) {
+        ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        List<ActivityManager.RunningAppProcessInfo> appProcesses = activityManager.getRunningAppProcesses();
+
+        return appProcesses == null;
+    }
 }
