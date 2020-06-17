@@ -1,100 +1,23 @@
 
 # React Native Invoke App
 
-[![npm version](https://badge.fury.io/js/react-native-invoke-app.svg)](https://badge.fury.io/js/react-native-invoke-app)
-
-[Headless JS](https://facebook.github.io/react-native/docs/headless-js-android.html) is a way to run background tasks in a React Native app. Sometimes we may want to open the app from background task (Headless JS). You can use this module to bring your app to foreground in all the following three cases.
-
-- App is in foreground
-- App is in background
-- App is not running
+Original repo [Github](https://github.com/vicke4/react-native-invoke-app) - but not maintained
 
 ## Installation
 
 ```
-$ npm install --save react-native-invoke-app
+# Temporarly not published to NPM
+# edit your package.json
+
+"dependencies": {
+    "react-native-invoke-app": "git+https://github.com/codegateinc/react-native-invoke-app.git"
+}
+
+# for React Native <0.60
 $ react-native link react-native-invoke-app
-```
 
-## Usage
-```javascript
-import invokeApp from 'react-native-invoke-app';
-
-// Within your headless function
-invokeApp();
-```
-
-## Advanced usage
-
-You can pass an object to `invokeApp` method to pick it from [DeviceEventEmitter](https://facebook.github.io/react-native/docs/native-modules-android.html#sending-events-to-javascript) by listening to `appInvoked` event.
-
-Example:
-
-```javascript
-const yourObject = { route: 'Dashboard' };
-
-invokeApp({
-    data: yourObject,
-})
-```
-
-### Use case
-
-Let's say you want to navigate to dashboard screen of the app after a specific task is completed. You can acheive it like,
-
-```javascript
-import React, { Component } from 'react';
-import { DeviceEventEmitter, Text, View } from 'react-native';
-import { createStackNavigator } from 'react-navigation';
-import invokeApp from 'react-native-invoke-app';
-
-import Dashboard from './dashboard';
-
-class App extends Component {
-    componentWillMount() {
-        DeviceEventEmitter.addListener('appInvoked', (data) => {
-	    const { route } = data;
-	    
-	    // Using react-navigation library for navigation.
-	    this.props.navigation.navigate(route);
-	});
-    }
-
-    render() {
-        return (
-	    <View>
-		<Text>
-		    This is Home screen.
-		</Text>
-	    </View>
-	)
-    }
-}
-
-const appStack = () => {
-    const Stack = createStackNavigator({
-        App,
-        Dashboard,
-    });
-
-    return <Stack />
-}
-
-const notificationActionHandler = async (data) => {
-    // Your background task
-    const yourObject = { route: 'Dashboard' };
-
-    invokeApp({
-	data: yourObject,
-    })
-}
-
-AppRegistry.registerHeadlessTask(
-    'RNPushNotificationActionHandlerTask', () => notificationActionHandler,
-);
-
-AppRegistry.registerComponent('testProject', () => appStack);
-
+# for React Native 0.60+
+# Supports autolinking
 ```
 
 ## Extra step needed when app is not running
