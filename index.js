@@ -4,6 +4,6 @@ const { ReactNativeInvokeApp } = NativeModules
 
 export const wakeMeUp = payload => {
     return ReactNativeInvokeApp.invokeApp({
-        data:  typeof data !== 'object' ? {} : payload
+        data: typeof payload !== 'object' ? {} : payload
     })
 }
