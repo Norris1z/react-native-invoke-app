@@ -3,6 +3,12 @@
 
 Original repo [Github](https://github.com/vicke4/react-native-invoke-app) - but not maintained
 
+My improvements:
+- supports Typescript typings
+- supports FLAG_ACTIVITY_SINGLE_TOP
+- updated dependencies
+- additional method isAppInHeadlessMode
+
 ## Installation
 
 ```
@@ -47,6 +53,17 @@ public class MainActivity extends ReactActivity {
 +	RNInvokeApp.sendEvent();
 +   }
 }
+```
+
+## Usage
+
+```
+import { wakeMeUp, isAppInHeadlessMode } from 'react-native-invoke-app'
+
+isAppInHeadlessMode() // true/false
+wakeUpApp(payload) // pass anything to get it inside appInvoked listener
+
+
 ```
 
 ### License
